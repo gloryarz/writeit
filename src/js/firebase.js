@@ -8,9 +8,7 @@ var config = {
   messagingSenderId: "10160378360"
 };
 firebase.initializeApp(config);
-  var db = firebase.firestore();
+var db = firebase.firestore();
 var storage = firebase.storage(); // Storage
-
-
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);

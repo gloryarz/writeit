@@ -32,27 +32,30 @@ document.getElementById('btnFile').addEventListener('change', (el) => {
         function error(err) {
 
         },
-        function complete() {
-
+        function completed() {
+ 
         }
 
 );
-    } else {
-        alert('Selecciona un archivo .mp3')
-    }
-})
+    } else if (file.name.includes('.jpg') || file.name.includes('.png') ) {
+        let storageRef = firebase.storage().ref('images/' + file.name);
+    let task = storageRef.put(file);
+    task.on('state_changed', 
 
-  /*
-    task.on('state_changed',
-        (snapshot) => {
-            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        function progress (snapshot) {
+            var percentage = (snapshot.bytesTransferred /
+            snapshot.totalBytes) * 100;
             uploader.value = percentage;
-        },
-        (err) => {
-            console.log(err);
-            
-        },
-        (el) => {
+        }, 
+        function error(err) {
 
+        },
+        function completed() {
+            console.log('completed');
         }
-    );*/
+    )} else {
+        alert('Escoge un archivo .mp3, .jpg o .png')
+    }
+});
+
+const btnDown = document.getElementById('btnDown');
